@@ -16,3 +16,15 @@ cd frontend
 npm i
 npm start
 ```
+
+5. Login with
+
+```
+username:   barel123
+
+password:   barel123
+```
+
+This will give you full access to the app
+
+Enjoy !
