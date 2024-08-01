@@ -1,6 +1,31 @@
 # Champions League
 
-Welcome to the Champions League project! This project includes both a backend server and a frontend client to provide a complete web application experience.
+This project is maintained by [Barel Heby](https://github.com/BarelHeby).
+
+The <b>Champions League App</b> is an engaging web application designed to enhance the experience of following the Champions League tournament. It provides a comprehensive platform for tracking games, placing bets, and comparing user standings.
+
+## Key Features
+
+1. <b>Betting On Games</b>
+
+   - Users can place bets on upcoming matches.
+   - Track the outcomes of bets and see how they influence the overall standings.
+
+2. <b>Interactive Leaderboard</b>
+   - View and compare your position on the leaderboard relative to other users.
+
+## How It Works
+
+1.  <b>Registration and Login</b>
+    - Users log in using provided credentials to access their profiles and place bets.
+2.  <b>Betting</b>
+
+    - Place bets on upcoming games through the intuitive user interface.
+    - Monitor the results of your bets and their impact on your standing.
+
+3.  <b>Leaderboard</b>
+    - Access the leaderboard to view your ranking compared to other users.
+    - Analyze the leaderboard to see top performers and track your progress.
 
 ## How to Run the Application
 
