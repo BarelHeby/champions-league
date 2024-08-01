@@ -1,6 +1,7 @@
 import axios from "axios";
+
 export default class APIService {
-  static API_URL = "http://10.0.0.28:8002/apiv1/";
+  static API_URL = process.env.REACT_APP_API_URL + "/apiv1/";
   static async post(url, data) {
     return axios.post(APIService.API_URL + url, data);
   }
