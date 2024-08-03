@@ -8,6 +8,11 @@ const TableComponent = () => {
   const [users, setUsers] = React.useState([]);
   React.useEffect(() => {
     async function fetchTable() {
+      const cached_users = await UserModel.getTableFromCache();
+      if (cached_users) {
+        setUsers(cached_users);
+        setIsLoading(false);
+      }
       const temp_users = await UserModel.getTable();
       setUsers(temp_users);
       setIsLoading(false);
@@ -38,6 +43,7 @@ const TableComponent = () => {
         <tbody>
           {users.map((user, i) => (
             <tr
+              key={i}
               className="  text-center user-row mt-3 border-top border-bottom "
               onClick={() => (window.location.href = "user/" + user.id)}
             >

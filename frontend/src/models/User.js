@@ -1,4 +1,5 @@
 import APIService from "../service/APIService";
+import { saveResponse, getResponse } from "../LocalDb";
 export default class User {
   constructor(
     id,
@@ -60,7 +61,7 @@ export default class User {
   static async getTable() {
     const url = "users/table";
     const resp = await APIService.get(url);
-    return resp.data.map(
+    const users_resp = resp.data.map(
       (user) =>
         new User(
           user.id,
@@ -71,6 +72,18 @@ export default class User {
           user.winnerTeam
         )
     );
+    saveResponse("users_table", JSON.stringify(users_resp));
+    // sessionStorage.setItem("users_table", JSON.stringify(users_resp));
+    return users_resp;
+  }
+
+  static async getTableFromCache() {
+    const local_info = await getResponse("users_table");
+    if (local_info) {
+      return JSON.parse(local_info);
+    } else {
+      return null;
+    }
   }
 
   static async createUser(
