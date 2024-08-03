@@ -18,7 +18,7 @@ const Home = () => {
     { name: "Bets", url: "/user/" + Auth.getUserId() },
   ];
   return (
-    <Container className="align-content-center App bg-champions " fluid>
+    <Container className="App bg-champions align-content-center " fluid>
       <img
         src={picture}
         alt="Champions League Logo"

@@ -47,15 +47,15 @@ const User = () => {
       <Container fluid={"md"} className="fade-in">
         {user && (
           <>
-            <Row className="text-center mb-3 p-3   ">
+            <Row className="text-center mb-3 p-3 pt-4   ">
               <Col xs={6}>
-                <div>
+                <div className="">
                   <img
                     src={user?.photo}
                     alt={user?.nickName}
-                    width={100}
-                    height={100}
-                    className="rounded-circle "
+                    width={80}
+                    height={80}
+                    className=" rounded-circle shadow "
                   />
                 </div>
               </Col>
@@ -64,16 +64,16 @@ const User = () => {
                   <img
                     src={user?.winnerTeam?.logo}
                     alt={user?.winnerTeam?.name}
-                    width={100}
-                    height={100}
-                    className="rounded-circle  "
+                    width={80}
+                    height={80}
+                    className="rounded-circle   shadow"
                   />
                 </div>
               </Col>
             </Row>
 
             <Row>
-              <h2>{user?.nickName}</h2>
+              <h1>{user?.nickName}</h1>
             </Row>
             {userInfo.map(({ label, value }, i) => (
               <Row key={i}>
@@ -95,7 +95,7 @@ const User = () => {
               md={6}
               key={i}
               className="fade-in"
-              style={{ animationDelay: `${(i + 1) * 0.5}s` }}
+              style={{ animationDelay: `${i * 0.5}s` }}
             >
               <BetCard betObject={bet} userId={id} />
             </Col>

@@ -15,11 +15,11 @@ class Team(models.Model):
     def __str__(self):
         return self.name    
     
-    def toJson(self):
+    def toJson(self,logoSize=(100,100)):
         return {
             "id":self.id,
             "name":self.name,
-            "logo": compress_and_resize_base64_image(self.logo,(100,100))
+            "logo": compress_and_resize_base64_image(self.logo,logoSize)
         }
     
 

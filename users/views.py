@@ -58,7 +58,6 @@ def user(request,id=None):
     if request.method == 'GET':
         if id:
             try:
-                # get the parameter isPhotoRequired from the url
                 isPhotoRequired = request.GET.get('isPhotoRequired')
                 isPhotoRequired = True if isPhotoRequired == 'true' else False
                 user = User.objects.get(id=id)
