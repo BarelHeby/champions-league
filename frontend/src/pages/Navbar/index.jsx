@@ -11,7 +11,7 @@ const NavbarComponent = () => {
       const isNotAuthenticated = !(await Auth.isAuthenticated());
       setIsAuthenticated(!isNotAuthenticated);
 
-      const u = await User.getUser(Auth.getUserId());
+      const u = await User.getUser(Auth.getUserId(), false);
       if (u) {
         setUser(u);
       }

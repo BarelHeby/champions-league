@@ -4,6 +4,7 @@ import json
 from .models import Team
 from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
+from main.Image import compress_and_resize_base64_image
 @csrf_exempt
 def team(request):
     if request.method == 'POST':
@@ -11,6 +12,7 @@ def team(request):
         name = body.get('name')
         logo = body.get('logo')
         logo =  Team.removeBackround(logo)
+        logo = compress_and_resize_base64_image(logo,(300,300))
         is_exists = Team.objects.filter(name=name).exists()
         if is_exists:
             return JsonResponse({'error':'Team already exists'},status=400)

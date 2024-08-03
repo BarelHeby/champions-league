@@ -10,7 +10,7 @@ from team.models import Team
 from users.models import User
 from users.views import validate_token
 import pytz
-
+from main.Image import compress_and_resize_base64_image
 @csrf_exempt
 def bet(request,userId=None):
     if request.method == 'GET':
@@ -30,9 +30,9 @@ def bet(request,userId=None):
                     'id':m.id,
                     'matchId':m.id,
                     'team1':m.team1.name,
-                    'team1Logo':m.team1.logo,
+                    'team1Logo':compress_and_resize_base64_image(m.team1.logo),
                     'team2':m.team2.name,
-                    'team2Logo':m.team2.logo,
+                    'team2Logo':compress_and_resize_base64_image(m.team2.logo),
                     'team1ActualScore':m.team1Score,
                     'team2ActualScore':m.team2Score,
                     'team1Score':None,
@@ -45,9 +45,9 @@ def bet(request,userId=None):
                     'id':m.id,
                     'matchId':m.id,
                     'team1':m.team1.name,
-                    'team1Logo':m.team1.logo,
+                    'team1Logo':compress_and_resize_base64_image(m.team1.logo),
                     'team2':m.team2.name,
-                    'team2Logo':m.team2.logo,
+                    'team2Logo':compress_and_resize_base64_image(m.team2.logo),
                     'team1ActualScore':m.team1Score,
                     'team2ActualScore':m.team2Score,
                     'team1Score':bet.team1Score,

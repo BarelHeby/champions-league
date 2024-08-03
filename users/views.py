@@ -7,6 +7,7 @@ import json
 from bet.models import Bet
 from match.models import Match
 from team.models import Team
+from main.Image import compress_and_resize_base64_image
 @csrf_exempt 
 def login(request):
     pass
@@ -39,6 +40,7 @@ def register(request):
         username = data.get('username')
         password = data.get('password')
         photo = data.get('photo')
+        photo = compress_and_resize_base64_image(photo,(300,300))
         nickName = data.get('nickName')
         winnerTeamId = data.get('winnerTeamId')
         topScorer = data.get('topScorer')
@@ -56,10 +58,13 @@ def user(request,id=None):
     if request.method == 'GET':
         if id:
             try:
+                # get the parameter isPhotoRequired from the url
+                isPhotoRequired = request.GET.get('isPhotoRequired')
+                isPhotoRequired = True if isPhotoRequired == 'true' else False
                 user = User.objects.get(id=id)
             except User.DoesNotExist:
                 return JsonResponse({'error':'User not found'},status=404)
-            return JsonResponse(user.toJson(),status=200)
+            return JsonResponse(user.toJson(isPhotoRequired),status=200)
         
         users = User.objects.all()
         response = []
@@ -106,7 +111,7 @@ def table(request):
         users = User.objects.all()
         response = []
         for user in users:
-            response.append(user.toJson())
+            response.append(user.toJsonTable())
         response = sorted(response,key=lambda x: x['score'],reverse=True)
         return JsonResponse(response,safe=False)
     return JsonResponse({'error':'Invalid request'},status=400)

@@ -35,8 +35,8 @@ export default class User {
         )
     );
   }
-  static async getUser(id) {
-    const url = "users/" + id;
+  static async getUser(id, isPhotoRequired = true) {
+    const url = "users/" + id + "?isPhotoRequired=" + isPhotoRequired;
     try {
       const resp = await APIService.get(url);
       return new User(

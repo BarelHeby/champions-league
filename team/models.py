@@ -5,7 +5,7 @@ from PIL import Image
 import numpy as np
 import cv2
 import rembg
-
+from main.Image import compress_and_resize_base64_image
 # Create your models here.
 class Team(models.Model):
     id = models.AutoField(primary_key=True)
@@ -19,7 +19,7 @@ class Team(models.Model):
         return {
             "id":self.id,
             "name":self.name,
-            "logo":self.logo
+            "logo": compress_and_resize_base64_image(self.logo,(100,100))
         }
     
 

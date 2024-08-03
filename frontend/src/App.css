@@ -6,14 +6,14 @@
 }
 
 .bg-champions {
-  background-image: url("https://w0.peakpx.com/wallpaper/355/120/HD-wallpaper-champions-league-icio-uefa-champions-league.jpg") !important;
+  background-image: url("/public/champions-league.jpg") !important;
   align-items: center;
   min-height: 100vh;
   background-size: contain;
   color: white;
 }
 .bg-champions-only {
-  background-image: url("https://w0.peakpx.com/wallpaper/355/120/HD-wallpaper-champions-league-icio-uefa-champions-league.jpg") !important;
+  background-image: url("/public/champions-league.jpg") !important;
   background-size: cover;
   background-repeat: no-repeat;
   width: 100%;
@@ -80,7 +80,12 @@ input::-webkit-inner-spin-button {
 
 .fade-in {
   opacity: 0;
-  animation: fadeIn 1s ease-in forwards; /* Default duration */
+  animation: fadeIn 1s ease-in forwards;
+}
+
+.fade-in-fast {
+  opacity: 0;
+  animation: fadeIn 0.5s linear forwards;
 }
 
 @keyframes fadeIn {
