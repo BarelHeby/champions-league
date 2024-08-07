@@ -1,5 +1,5 @@
 # Champions League
-
+ 
 This project is maintained by [Barel Heby](https://github.com/BarelHeby).
 
 The <b>Champions League App</b> is an engaging web application designed to enhance the experience of following the Champions League tournament. It provides a comprehensive platform for tracking games, placing bets, and comparing user standings.
