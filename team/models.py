@@ -8,7 +8,7 @@ import rembg
 from main.Image import compress_and_resize_base64_image
 # Create your models here.
 class Team(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     name = models.CharField(max_length=100)
     logo = models.TextField()
 

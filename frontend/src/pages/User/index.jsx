@@ -31,7 +31,7 @@ const User = () => {
   }, [id]);
 
   if (isLoading) {
-    return <div className="bg-champions"></div>;
+    return <div className="bg-champions">Loading...</div>;
   }
 
   const userInfo = [

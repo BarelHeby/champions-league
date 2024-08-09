@@ -25,7 +25,11 @@ const TableComponent = () => {
     auth();
   }, []);
   if (isLoading) {
-    return <Container fluid className="bg-champions pt-3"></Container>;
+    return (
+      <Container fluid className="bg-champions pt-3">
+        Loading...
+      </Container>
+    );
   }
   return (
     <Container fluid className="bg-champions pt-3 ">

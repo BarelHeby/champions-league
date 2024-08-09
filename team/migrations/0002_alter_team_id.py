@@ -10,9 +10,4 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
-            model_name='team',
-            name='id',
-            field=models.AutoField(primary_key=True, serialize=False),
-        ),
     ]
