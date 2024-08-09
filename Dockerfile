@@ -15,4 +15,5 @@ COPY . .
 EXPOSE 80
 
 # Command to run the Django app in development
-CMD ["python", "manage.py", "runserver", "0.0.0.0:80"]
+# CMD ["python", "manage.py", "runserver", "0.0.0.0:80"]
+CMD ["gunicorn", "--bind", "0.0.0.0:80", "main.wsgi:application"]
