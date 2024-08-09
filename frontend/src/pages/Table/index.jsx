@@ -1,8 +1,10 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import "./table.css";
 import Auth from "../../auth";
 import UserModel from "../../models/User";
+import Loading from "../Loading";
+import golden_cup from "./golden_cup.png";
 const TableComponent = () => {
   const [isLoading, setIsLoading] = React.useState(true);
   const [users, setUsers] = React.useState([]);
@@ -26,8 +28,8 @@ const TableComponent = () => {
   }, []);
   if (isLoading) {
     return (
-      <Container fluid className="bg-champions pt-3">
-        Loading...
+      <Container fluid className="bg-champions pt-3 text-center">
+        <Loading />
       </Container>
     );
   }
@@ -52,27 +54,43 @@ const TableComponent = () => {
               onClick={() => (window.location.href = "user/" + user.id)}
             >
               <td className="text-start ">
-                <div className="d-flex align-items-center ">
-                  <span className="me-3 ms-2">{i}</span>
-                  <img
-                    src={user.winnerTeam?.logo}
-                    alt="winnerTeam"
-                    className="rounded-circle me-3 shadow"
-                    width={50}
-                    height={50}
-                  />
-                  <img
-                    src={user.photo}
-                    alt="userPhoto"
-                    className="rounded-circle me-3 shadow"
-                    width={50}
-                    height={50}
-                  />
+                <Row className="align-items-center">
+                  <Col xs={2} md={1} className=" text-center">
+                    {i === 0 ? (
+                      <img
+                        src={golden_cup}
+                        alt="golden_cup"
+                        className="rounded-circle shadow"
+                        width={50}
+                        height={50}
+                      />
+                    ) : (
+                      <span>{i + 1}</span>
+                    )}
+                  </Col>
 
-                  <div>
+                  <Col xs={2} md={1}>
+                    <img
+                      src={user.winnerTeam?.logo}
+                      alt="winnerTeam"
+                      className="rounded-circle me-3 shadow"
+                      width={50}
+                      height={50}
+                    />
+                  </Col>
+                  <Col xs={2} md={1}>
+                    <img
+                      src={user.photo}
+                      alt="userPhoto"
+                      className="rounded-circle me-3 shadow"
+                      width={50}
+                      height={50}
+                    />
+                  </Col>
+                  <Col>
                     <span className="user-name">{user.nickName}</span>
-                  </div>
-                </div>
+                  </Col>
+                </Row>
               </td>
               <td className="align-content-center">{user.score}</td>
             </tr>

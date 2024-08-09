@@ -5,6 +5,7 @@ import BetModel from "../../models/Bet";
 import UserModel from "../../models/User";
 import Auth from "../../auth";
 import BetCard from "./BetCard";
+import Loading from "../Loading";
 const User = () => {
   const { id } = useParams();
   const [user, setUser] = React.useState(null);
@@ -24,14 +25,18 @@ const User = () => {
 
     async function auth() {
       await Auth.checkAuth();
-      fetchBets();
       fetchUser();
+      fetchBets();
     }
     auth();
   }, [id]);
 
   if (isLoading) {
-    return <div className="bg-champions">Loading...</div>;
+    return (
+      <div className="bg-champions text-center">
+        <Loading />
+      </div>
+    );
   }
 
   const userInfo = [

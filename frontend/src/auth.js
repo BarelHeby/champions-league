@@ -33,8 +33,6 @@ export default class Auth {
 
   static async checkAuth(isAuthMust = true, isAdmin = false) {
     const isAuthenticated = await Auth.isAuthenticated(isAdmin);
-    console.log("isAuthenticated", isAuthenticated);
-    console.log("isAuthMust", isAuthMust);
     if (isAuthenticated && !isAuthMust) {
       window.location.href = "/";
     }
