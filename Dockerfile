@@ -1,19 +1,16 @@
-# Use a lightweight Python base image
-FROM python:3.10-slim-buster
+FROM python:3.10
+ENV PYTHONUNBUFFERED=1
+ENV DJANGO_SETTINGS_MODULE=main.settings
 
-# Set the working directory
+RUN apt-get update && apt-get install -y libgl1-mesa-glx && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
-# Copy requirements.txt and install dependencies
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements.txt .
 
-# Copy the rest of the application code
+RUN pip install -r requirements.txt
+
 COPY . .
 
-# Expose the port your Django app will listen on
-EXPOSE 80
-
-# Command to run the Django app in development
-# CMD ["python", "manage.py", "runserver", "0.0.0.0:80"]
 CMD ["gunicorn", "--bind", "0.0.0.0:80", "main.wsgi:application"]
+
