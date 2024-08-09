@@ -15,7 +15,7 @@ The <b>Champions League App</b> is an engaging web application designed to enhan
    - View and compare your position on the leaderboard relative to other users.
 
 ## How It Works
-
+ 
 1.  <b>Registration and Login</b>
     - Users log in using provided credentials to access their profiles and place bets.
 2.  <b>Betting</b>
