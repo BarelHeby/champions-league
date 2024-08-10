@@ -23,10 +23,11 @@ def bet(request,userId=None):
         else:
             matches = Match.objects.all()
         response = []
+        bets = Bet.objects.filter(user_id=userId,match__in=matches)
+        bet_map = {bet.match_id:bet for bet in bets}
         for m in matches:
             bet = Bet.objects.filter(user_id=userId,match=m).first()
-            if not bet:
-                response.append({
+            common_data = {
                     'id':m.id,
                     'matchId':m.id,
                     'team1':m.team1.name,
@@ -35,27 +36,21 @@ def bet(request,userId=None):
                     'team2Logo':compress_and_resize_base64_image(m.team2.logo,(80,80)),
                     'team1ActualScore':m.team1Score,
                     'team2ActualScore':m.team2Score,
-                    'team1Score':None,
-                    'team2Score':None,
                     'timestamp':m.timestamp,
                     'isBettable':m.is_bettable()
+            }
+            if m.id in bet_map:
+                bet = bet_map[m.id]
+                common_data.update({
+                    'team1Score': bet.team1Score,
+                    'team2Score': bet.team2Score,
                 })
             else:
-                response.append({
-                    'id':m.id,
-                    'matchId':m.id,
-                    'team1':m.team1.name,
-                    'team1Logo':compress_and_resize_base64_image(m.team1.logo,(80,80)),
-                    'team2':m.team2.name,
-                    'team2Logo':compress_and_resize_base64_image(m.team2.logo,(80,80)),
-                    'team1ActualScore':m.team1Score,
-                    'team2ActualScore':m.team2Score,
-                    'team1Score':bet.team1Score,
-                    'team2Score':bet.team2Score,
-                    'timestamp':m.timestamp,
-                    'isBettable':m.is_bettable()
+                common_data.update({
+                    'team1Score': None,
+                    'team2Score': None,
                 })
-                
+            response.append(common_data)
         response = sorted(response,key=lambda x: x['timestamp'],reverse=True)
         return JsonResponse(response,safe=False)
     
@@ -65,18 +60,21 @@ def bet(request,userId=None):
         if 'matchId' not in keys  or 'team1Score' not in keys or 'team2Score' not in keys:
             return JsonResponse({'error':'Invalid request'},status=400)
         matchId = data.get('matchId')
-        match = Match.objects.get(id=matchId)
+        try:
+            match = Match.objects.get(id=matchId)
+
+        except:
+            return JsonResponse({'error':'Invalid match id'},status=400)
         team1Score = data.get('team1Score')
         team2Score = data.get('team2Score')
         current_time = datetime.now()
-        isBetExist = Bet.objects.filter(user_id=userId,match=match).exists()
-        if isBetExist:
-            bet = Bet.objects.get(user_id=userId,match=match)
+        bet = Bet.objects.filter(user_id=userId,match_id=match.id).first()
+        if bet:
             bet.team1Score = team1Score
             bet.team2Score = team2Score
             bet.timestamp = current_time
             bet.save()
             return JsonResponse({'id':bet.id},status=200)
-        new_bet = Bet(user_id=userId,match=match,team1Score=team1Score,team2Score=team2Score,timestamp=current_time)
+        new_bet = Bet(user_id=userId,match_id=match.id,team1Score=team1Score,team2Score=team2Score,timestamp=current_time)
         new_bet.save()
         return JsonResponse({'id':new_bet.id},status=200)

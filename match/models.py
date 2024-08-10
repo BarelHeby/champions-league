@@ -1,7 +1,5 @@
 from django.db import models
 from datetime import datetime
-from django.utils import timezone
-# Create your models here.
 import pytz
 class Match(models.Model):
     team1 = models.ForeignKey('team.Team', related_name='team1', on_delete=models.CASCADE)
@@ -18,4 +16,4 @@ class Match(models.Model):
     
     def is_bettable(self):
         jerusalem_tz = pytz.timezone('Asia/Jerusalem')
-        return self.finished == False and self.timestamp > datetime.now().astimezone(jerusalem_tz)
+        return  self.timestamp.replace(tzinfo=None) > datetime.now().astimezone(jerusalem_tz).replace(tzinfo=None)

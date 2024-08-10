@@ -1,0 +1,39 @@
+[debug] [2024-08-10T15:55:43.555Z] ----------------------------------------------------------------------
+[debug] [2024-08-10T15:55:43.556Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2024-08-10T15:55:43.557Z] CLI Version:   12.0.0
+[debug] [2024-08-10T15:55:43.557Z] Platform:      linux
+[debug] [2024-08-10T15:55:43.557Z] Node Version:  v20.0.0
+[debug] [2024-08-10T15:55:43.557Z] Time:          Sat Aug 10 2024 18:55:43 GMT+0300 (Israel Daylight Time)
+[debug] [2024-08-10T15:55:43.557Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-08-10T15:55:43.603Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-08-10T15:55:43.604Z] > authorizing via signed-in user (barelheby03@gmail.com)
+[debug] [2024-08-10T15:55:43.604Z] [iam] checking project champions-league-a3e6f for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-08-10T15:55:43.605Z] > refreshing access token with scopes: []
+[debug] [2024-08-10T15:55:43.606Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-08-10T15:55:43.606Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-08-10T15:55:43.804Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2024-08-10T15:55:43.804Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-08-10T15:55:43.813Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/champions-league-a3e6f:testIamPermissions [none]
+[debug] [2024-08-10T15:55:43.813Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/champions-league-a3e6f:testIamPermissions x-goog-quota-user=projects/champions-league-a3e6f
+[debug] [2024-08-10T15:55:43.813Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/champions-league-a3e6f:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-08-10T15:55:44.871Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/champions-league-a3e6f:testIamPermissions 200
+[debug] [2024-08-10T15:55:44.871Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/champions-league-a3e6f:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-08-10T15:55:44.872Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/champions-league-a3e6f [none]
+[debug] [2024-08-10T15:55:45.321Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/champions-league-a3e6f 200
+[debug] [2024-08-10T15:55:45.321Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/champions-league-a3e6f {"projectId":"champions-league-a3e6f","projectNumber":"821831282268","displayName":"champions-league","name":"projects/champions-league-a3e6f","resources":{"hostingSite":"champions-league-a3e6f"},"state":"ACTIVE","etag":"1_43c78c11-d413-430d-9b4c-4346815c4ab6"}
+[info] 
+[info] === Deploying to 'champions-league-a3e6f'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2024-08-10T15:55:45.324Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/champions-league-a3e6f/versions [none]
+[debug] [2024-08-10T15:55:45.324Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/champions-league-a3e6f/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2024-08-10T15:55:47.513Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/champions-league-a3e6f/versions 200
+[debug] [2024-08-10T15:55:47.513Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/champions-league-a3e6f/versions {"name":"projects/821831282268/sites/champions-league-a3e6f/versions/99574288ed83f362","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[champions-league-a3e6f]: beginning deploy... 
+[info] i  hosting[champions-league-a3e6f]: found 18 files in build 
+[debug] [2024-08-10T15:55:47.517Z] [hosting] uploading with 200 concurrency
+[debug] [2024-08-10T15:55:47.712Z] [hosting] hash cache [YnVpbGQ] stored for 18 files
+[debug] [2024-08-10T15:55:47.712Z] [hosting][hash queue][FINAL] {"max":184,"min":6,"avg":30.166666666666668,"active":0,"complete":18,"success":18,"errored":0,"retried":0,"total":18,"elapsed":187}
+[debug] [2024-08-10T15:55:47.712Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/821831282268/sites/champions-league-a3e6f/versions/99574288ed83f362:populateFiles [none]
+[debug] [2024-08-10T15:55:47.712Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/821831282268/sites/champions-league-a3e6f/versions/99574288ed83f362:populateFiles {"files":{"/asset-manifest.json":"7da2b4983385b69f9fa477be465161e0491d886f280ba40eb116de87d116e0dd","/favicon.ico":"c599b7a91ab3627e3538125d9f40adc2d4bf949046984262670545dc7738af06","/index.html":"8ffed4393318651150d8d6e985e783fcc24833532f36ea4d3b341a9db12c410f","/logo192.png":"76c449ccb9cd117c2f2338f091b18f7050f3210e249b2228f5c81b23f34377cd","/manifest.json":"0958a5e0c831126100c8c2d06a6bbaa665a3900f21aaff4130238a6f5a113aa1","/robots.txt":"2544ca049f223a42bff01f72ad930a5edba75bbb7199d0f8430a02ff5aca16ec","/logo512.png":"7779210d56c1f3741e2e487799fe3092def4fa6ac450a60532b807c3a8971205","/static/js/453.8ab44547.chunk.js":"f271ce0ba795ceb703af7e14f2944cc3eb4bca067a2abd196ce04a3750cb50ce","/static/js/main.904c4aab.js.LICENSE.txt":"3c46266b6a3488f4b3e18e810e40e72967142d0949656a666baac994c3c10652","/static/js/453.8ab44547.chunk.js.map":"162a9b198961649f16b3b4fa4e1d8c2f18b80b5348a7b7de32f830c457bdb312","/static/css/main.a7ca2ec7.css":"7430e4e50d4c4417015174df9d3e0c5db307cbe8c0309769fc0bf51d235471fa","/champions-league.jpg":"0fb4afae0a575bdaabcab28332dc9288949ed8b5c1b9f14d7c505480cbeef8d7","/static/media/champions-league.8925ae0177383d60e4d7.jpg":"0fb4afae0a575bdaabcab28332dc9288949ed8b5c1b9f14d7c505480cbeef8d7","/static/js/main.904c4aab.js":"58df408f8dbe99cd1b612c9f41f496cc2cf5de545df7221fbe015b3ce4bdcfb2","/static/media/golden_cup.741ab1be64b1cb467e59.png":"cd37bf056f7dd66bcf88169bfda480c4437ed944aa7d24a4de46530f740fdbb0","/static/css/main.a7ca2ec7.css.map":"d5fa9d301224a2cd592285c23ae644339eb04e7e2150e41885a853af16b819ec","/static/media/loading.79b4534ac2db42b735e9.gif":"db67ed520c5065cc7e367e9ff7e68e12fb6734605b9b57f231f5c26bd54a58ef","/static/js/main.904c4aab.js.map":"360d819cc3b3060cf93bbf925c060777c29c586656289366a6c88d288e2ba344"}}

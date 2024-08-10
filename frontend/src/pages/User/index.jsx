@@ -42,10 +42,6 @@ const User = () => {
   const userInfo = [
     { label: "Score", value: user?.score },
     { label: "Top Scorer", value: user?.topScorer },
-    {
-      label: "Winner",
-      value: user && user.winnerTeam ? user.winnerTeam.name : "",
-    },
   ];
   return (
     <div className="bg-champions  pb-4 ">
@@ -54,35 +50,33 @@ const User = () => {
           <>
             <Row className="text-center mb-3 p-3 pt-4   ">
               <Col xs={6}>
-                <div className="">
+                <div className="text-center">
                   <img
                     src={user?.photo}
                     alt={user?.nickName}
                     width={80}
                     height={80}
-                    className=" rounded-circle shadow "
+                    className=" rounded-circle shadow mb-2 "
                   />
+                  <h4>{user?.nickName}</h4>
                 </div>
               </Col>
-              <Col xs={6} className="border-start">
+              <Col xs={6} className="border-start text-center">
                 <div>
                   <img
                     src={user?.winnerTeam?.logo}
                     alt={user?.winnerTeam?.name}
                     width={80}
                     height={80}
-                    className="rounded-circle   shadow"
+                    className="rounded-circle   shadow mb-2"
                   />
+                  <h4>{user?.winnerTeam?.name}</h4>
                 </div>
               </Col>
             </Row>
-
-            <Row>
-              <h1>{user?.nickName}</h1>
-            </Row>
             {userInfo.map(({ label, value }, i) => (
               <Row key={i}>
-                <Col xs={4} md={2} lg={1}>
+                <Col xs={4} md={2} lg={2}>
                   <span>
                     <b>{label}</b>
                   </span>

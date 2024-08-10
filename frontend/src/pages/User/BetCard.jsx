@@ -6,9 +6,11 @@ const BetCard = ({ betObject, userId }) => {
   const [teamToUpdate, setTeamToUpdate] = React.useState(null);
   const [showFooter, setShowFooter] = React.useState(false);
   const [bet, setBet] = React.useState(betObject);
+  const [isLoading, setIsLoading] = React.useState(false);
   if (!bet) {
     return <div></div>;
   }
+  console.log(bet);
   return (
     <Card>
       <Card.Header as="h3" className="d-flex justify-content-between">
@@ -46,25 +48,25 @@ const BetCard = ({ betObject, userId }) => {
 
             <Col xs={2}>
               <Button
-                disabled={!bet.isBettable}
+                disabled={!bet.isBettable || isLoading}
                 onClick={() => {
                   setTeamToUpdate(1);
                   setShowFooter(true);
                 }}
               >
-                {bet.team1Score || "?"}
+                {bet.team1Score !== null ? bet.team1Score : "?"}
               </Button>
             </Col>
             <Col xs={1}>:</Col>
             <Col xs={2}>
               <Button
-                disabled={!bet.isBettable}
+                disabled={!bet.isBettable || isLoading}
                 onClick={() => {
                   setTeamToUpdate(2);
                   setShowFooter(true);
                 }}
               >
-                {bet.team2Score || "?"}
+                {bet.team2Score !== null ? bet.team2Score : "?"}
               </Button>
             </Col>
 
@@ -85,14 +87,15 @@ const BetCard = ({ betObject, userId }) => {
           {Array.from(Array(6).keys()).map((i) => (
             <Col key={i}>
               <Button
-                onClick={() => {
-                  BetModel.updateBet(userId, bet, teamToUpdate, i);
-                  console.log(teamToUpdate, i);
+                onClick={async () => {
+                  setShowFooter(false);
+                  setIsLoading(true);
+                  await BetModel.updateBet(userId, bet, teamToUpdate, i);
+                  setIsLoading(false);
                   const tempBet = { ...bet };
                   if (teamToUpdate === 1) tempBet.team1Score = i;
                   else tempBet.team2Score = i;
                   setBet(tempBet);
-                  setShowFooter(false);
                 }}
               >
                 {i}
