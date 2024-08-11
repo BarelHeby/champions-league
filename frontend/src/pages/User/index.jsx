@@ -11,10 +11,12 @@ const User = () => {
   const [user, setUser] = React.useState(null);
   const [bets, setBets] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
+  const [isBetsLoading, setIsBetsLoading] = React.useState(true);
   React.useEffect(() => {
     async function fetchBets() {
       const temp_bets = await BetModel.getBets(id);
       setBets(temp_bets);
+      setIsBetsLoading(false);
     }
 
     async function fetchUser() {
@@ -87,19 +89,25 @@ const User = () => {
           </>
         )}
         <hr />
-        <Row className="gy-2 ">
-          {bets.map((bet, i) => (
-            <Col
-              xs={12}
-              md={6}
-              key={i}
-              className="fade-in"
-              style={{ animationDelay: `${i * 0.5}s` }}
-            >
-              <BetCard betObject={bet} userId={id} />
-            </Col>
-          ))}
-        </Row>
+        {isBetsLoading ? (
+          <div className="w-100 text-center">
+            <Loading style={"loading"} />
+          </div>
+        ) : (
+          <Row className="gy-2 ">
+            {bets.map((bet, i) => (
+              <Col
+                xs={12}
+                md={6}
+                key={i}
+                className="fade-in"
+                style={{ animationDelay: `${i * 0.5}s` }}
+              >
+                <BetCard betObject={bet} userId={id} />
+              </Col>
+            ))}
+          </Row>
+        )}
       </Container>
     </div>
   );
