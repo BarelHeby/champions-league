@@ -47,7 +47,7 @@ const TableComponent = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user, i) => (
+          {users?.map((user, i) => (
             <tr
               key={i}
               className="  text-center user-row mt-3 border-top border-bottom "

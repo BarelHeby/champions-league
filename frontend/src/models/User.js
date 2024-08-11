@@ -88,21 +88,25 @@ export default class User {
   }
   static async getTable() {
     const url = "users/table";
-    const resp = await APIService.get(url);
-    const users_resp = resp.data.map(
-      (user) =>
-        new User(
-          user.id,
-          user.nickName,
-          user.photo,
-          user.score,
-          user.topScorer,
-          user.winnerTeam
-        )
-    );
-    saveResponse("users_table", JSON.stringify(users_resp));
-    // sessionStorage.setItem("users_table", JSON.stringify(users_resp));
-    return users_resp;
+    try {
+      const resp = await APIService.get(url);
+      const users_resp = resp.data.map(
+        (user) =>
+          new User(
+            user.id,
+            user.nickName,
+            user.photo,
+            user.score,
+            user.topScorer,
+            user.winnerTeam
+          )
+      );
+      saveResponse("users_table", JSON.stringify(users_resp));
+      // sessionStorage.setItem("users_table", JSON.stringify(users_resp));
+      return users_resp;
+    } catch (e) {
+      return null;
+    }
   }
 
   static async getTableFromCache() {

@@ -56,8 +56,12 @@ export default class Bet {
     const headers = {
       token: localStorage.getItem("token"),
     };
-    const resp = await APIService.get(url, headers);
-    return resp.data.map((bet) => Bet.fromJson(bet));
+    try {
+      const resp = await APIService.get(url, headers);
+      return resp.data.map((bet) => Bet.fromJson(bet));
+    } catch (e) {
+      return [];
+    }
   }
 
   static async updateBet(userId, bet, team, score) {
