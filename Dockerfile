@@ -12,5 +12,5 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD ["gunicorn","main.wsgi:application","--bind",":80","--workers", "3"]
+ENTRYPOINT ["gunicorn","main.wsgi:application","--config","gunicorn.conf.py"]
 
