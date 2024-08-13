@@ -6,6 +6,9 @@ RUN apt-get update && apt-get install -y libgl1-mesa-glx && rm -rf /var/lib/apt/
 
 WORKDIR /app
 
+RUN python3 -m venv venv
+ENV PATH="/app/venv/bin:$PATH"
+
 COPY requirements.txt .
 
 RUN pip install -r requirements.txt
