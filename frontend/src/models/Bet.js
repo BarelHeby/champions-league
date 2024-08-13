@@ -1,3 +1,4 @@
+import Auth from "../auth";
 import APIService from "../service/APIService";
 export default class Bet {
   constructor(
@@ -53,8 +54,9 @@ export default class Bet {
   }
   static async getBets(userId) {
     const url = "bets/" + userId;
+    const signed_user_id = Auth.getUserId();
     const headers = {
-      token: localStorage.getItem("token"),
+      token: signed_user_id,
     };
     try {
       const resp = await APIService.get(url, headers);

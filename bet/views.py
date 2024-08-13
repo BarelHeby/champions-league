@@ -16,7 +16,7 @@ def bet(request,userId=None):
     if request.method == 'GET':
         headers = request.headers
         token = headers.get('token')
-        isSameUser = validate_token(token,userId)
+        isSameUser = userId == token
         if not isSameUser:
             jerusalem_tz = pytz.timezone('Asia/Jerusalem')
             matches = Match.objects.filter(timestamp__lt=datetime.now().astimezone(jerusalem_tz))
